@@ -1,7 +1,8 @@
-package com.example.todo.starbucks
+package com.example.todo.starbucks.screen.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.todo.starbucks.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
