@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_baseline_home"
+        android:title="@string/label_home_icon" />
+    <item
+        android:id="@+id/navigation_pay"
+        android:icon="@drawable/ic_baseline_payment"
+        android:title="@string/label_pay_icon" />
+    <item
+        android:id="@+id/navigation_order"
+        android:icon="@drawable/ic_baseline_local_drink"
+        android:title="@string/label_order_icon" />
+    <item
+        android:id="@+id/navigation_favorite"
+        android:icon="@drawable/ic_baseline_star_rate"
+        android:title="@string/label_favorite_icon" />
+</menu>
