@@ -5,4 +5,5 @@
     <string name="label_order_icon">Order</string>
     <string name="label_favorite_icon">Favorite</string>
     <string name="label_new">What\'s New</string>
+    <string name="label_recommend_menu">%s님을 위한 추천메뉴</string>
 </resources>
