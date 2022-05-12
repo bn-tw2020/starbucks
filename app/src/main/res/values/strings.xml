@@ -5,5 +5,12 @@
     <string name="label_order_icon">Order</string>
     <string name="label_favorite_icon">Favorite</string>
     <string name="label_new">What\'s New</string>
-    <string name="label_recommend_menu">%s님을 위한 추천메뉴</string>
+    <string name="label_recommend_menu">&lt;font color="#FF8CB3">%s&lt;/font>님을 위한 추천메뉴</string>
+    <string name="description_main_even">메인이벤트</string>
+    <string name="label_see_all">See all</string>
+    <string name="description_event">description_event</string>
+    <string name="label_current_popular_menu">이 시간대 인기 메뉴</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_events">Events</string>
 </resources>

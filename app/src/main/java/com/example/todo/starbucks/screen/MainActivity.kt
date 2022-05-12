@@ -1,8 +1,7 @@
-package com.example.todo.starbucks.screen.home
+package com.example.todo.starbucks.screen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -16,8 +15,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-
 
         val navController = supportFragmentManager.findFragmentById(R.id.container_main)?.findNavController()
         navController?.let {

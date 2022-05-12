@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="event"
+            type="com.example.todo.starbucks.domain.model.Event" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="330dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <ImageView
+            android:id="@+id/iv_event"
+            setImage="@{event.url}"
+            android:layout_width="300dp"
+            android:layout_height="230dp"
+            android:contentDescription="@string/description_event"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/Subtitle1.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{event.title}"
+            app:layout_constraintStart_toStartOf="@id/iv_event"
+            app:layout_constraintTop_toBottomOf="@id/iv_event"
+            tools:text="에코 제주 보너스 스타" />
+
+        <TextView
+            android:id="@+id/tv_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@{event.subtitle}"
+            app:layout_constraintStart_toStartOf="@id/iv_event"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="에코 매장에서 리유저블 컵 사용하여 음료 주문 시, 리유저블 컵 1개당 별 2개 추가 적립 " />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

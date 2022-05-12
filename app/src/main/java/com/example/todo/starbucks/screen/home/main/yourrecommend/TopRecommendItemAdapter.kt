@@ -1,4 +1,4 @@
-package com.example.todo.starbucks.screen.home.main
+package com.example.todo.starbucks.screen.home.main.yourrecommend
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

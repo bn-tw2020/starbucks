@@ -13,21 +13,31 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp">
+        android:layout_marginTop="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
         <TextView
-            android:id="@+id/tv_recommend_menu"
+            android:id="@+id/tv_popular_menu"
             style="@style/Headline5.Black.Size20"
-            textFormatRecommendMenu="@{products.title}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:text="@string/label_current_popular_menu"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_current_time"
+            setTimeFormat="@{products.title}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/label_recommend_menu" />
+            tools:text="주중 오후 4시 기준" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_recommend_section"
+            android:id="@+id/rv_popular_menu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -36,8 +46,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_recommend_menu"
-            tools:listitem="@layout/item_recommend_menu" />
+            app:layout_constraintTop_toBottomOf="@id/tv_popular_menu"
+            tools:listitem="@layout/item_popular_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

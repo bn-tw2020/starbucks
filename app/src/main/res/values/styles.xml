@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Headline5" parent="TextAppearance.MaterialComponents.Headline5"/>
+    <style name="Headline5" parent="TextAppearance.MaterialComponents.Headline5" />
 
     <style name="Headline5.Black">
         <item name="android:textColor">@color/black</item>
@@ -17,14 +17,43 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Subtitle1.Green">
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="Subtitle1.Green.Size18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2" />
 
     <style name="Subtitle2.Bold">
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="circleImageView" parent="ShapeAppearance.MaterialComponents.MediumComponent">
-        <item name="cornerFamily">rounded</item>
+    <style name="Subtitle2.Green">
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="Body2" parent="TextAppearance.MaterialComponents.Body2" />
+
+    <style name="Body2.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Body2.Bold.Green">
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="Body2.Grey">
+        <item name="android:color">@color/grey</item>
+    </style>
+
+    <style name="circleImageView">
         <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="cornerImageView">
+        <item name="cornerSize">10%</item>
     </style>
 </resources>

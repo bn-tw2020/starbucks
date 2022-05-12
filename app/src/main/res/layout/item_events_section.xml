@@ -3,41 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="products"
-            type="com.example.todo.starbucks.domain.model.RecommendProducts" />
-    </data>
+    <data></data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp">
+        android:layout_marginTop="30dp">
 
-        <TextView
-            android:id="@+id/tv_recommend_menu"
-            style="@style/Headline5.Black.Size20"
-            textFormatRecommendMenu="@{products.title}"
+        <Button
+            android:id="@+id/btn_see_all"
+            style="@style/Body2.Bold.Green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/label_recommend_menu" />
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/transparent"
+            android:text="@string/label_see_all"
+            app:layout_constraintBottom_toTopOf="@id/rv_events"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_recommend_section"
+            android:id="@+id/rv_events"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_recommend_menu"
-            tools:listitem="@layout/item_recommend_menu" />
+            app:layout_constraintTop_toBottomOf="@id/btn_see_all"
+            tools:listitem="@layout/item_event" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
