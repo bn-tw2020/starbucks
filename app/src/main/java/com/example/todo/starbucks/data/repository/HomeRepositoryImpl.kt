@@ -7,6 +7,7 @@ import com.example.todo.starbucks.data.dto.Events
 import com.example.todo.starbucks.data.remote.HomeApi
 import com.example.todo.starbucks.data.remote.ProductApi
 import com.example.todo.starbucks.domain.model.NewNotice
+import com.example.todo.starbucks.domain.model.Order
 import com.example.todo.starbucks.domain.repository.HomeRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -50,6 +51,21 @@ class HomeRepositoryImpl(
                 map
             }
         )
+    }
+
+    override suspend fun getOrders(id: String): Flow<Result<List<Order>>> = flow {
+        emit(runCatching {
+            productApi.getOrders(id).details.map { detail ->
+                val order = Order(
+                    detail.productCD,
+                    detail.imgUPLOADPATH + detail.filePATH,
+                    detail.productNM,
+                    detail.productENGNM,
+                    Order.getRandomPrice()
+                )
+                order
+            }
+        })
     }
 
 }

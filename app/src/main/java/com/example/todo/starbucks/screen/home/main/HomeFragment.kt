@@ -1,7 +1,6 @@
 package com.example.todo.starbucks.screen.home.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,9 +18,6 @@ import com.example.todo.starbucks.screen.home.main.nowrecommend.PopularProductsS
 import com.example.todo.starbucks.screen.home.main.nowrecommend.PopularSectionAdapter
 import com.example.todo.starbucks.screen.home.main.yourrecommend.RecommendProductsState
 import com.example.todo.starbucks.screen.home.main.yourrecommend.TopRecommendSectionAdapter
-import kotlinx.coroutines.flow.buffer
-import kotlinx.coroutines.flow.conflate
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {

@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.starbucks.databinding.ItemOrderBinding
 import com.example.todo.starbucks.domain.model.Order
 
-class OrderAdapter : ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUtil()) {
+class OrderAdapter(
+    private val completed: (Order) -> Unit
+) : ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
         val binding = ItemOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,12 +21,13 @@ class OrderAdapter : ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffU
         holder.bind(getItem(position))
     }
 
-    class OrderViewHolder(
+    inner class OrderViewHolder(
         private val binding: ItemOrderBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(order: Order) {
             binding.order = order
+            itemView.setOnClickListener { completed(order) }
         }
     }
 

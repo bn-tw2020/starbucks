@@ -2,12 +2,10 @@ package com.example.todo.starbucks.data.remote
 
 import com.example.todo.starbucks.data.ProductFile
 import com.example.todo.starbucks.data.ProductInformation
+import com.example.todo.starbucks.data.dto.DetailsDto
 import com.example.todo.starbucks.data.dto.Events
 import com.example.todo.starbucks.data.dto.NewsDto
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ProductApi {
 
@@ -37,4 +35,10 @@ interface ProductApi {
      */
     @GET("whats_new/newsListAjax.do")
     suspend fun getNews(): NewsDto
+
+    /**
+     * @Description_주문_목록_가져오기
+     */
+    @POST("upload/json/menu/{id}.js")
+    suspend fun getOrders(@Path("id") id: String): DetailsDto
 }

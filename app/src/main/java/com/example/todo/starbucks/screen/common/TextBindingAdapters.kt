@@ -1,10 +1,10 @@
 package com.example.todo.starbucks.screen.common
 
-import android.util.Log
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import com.example.todo.starbucks.R
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -14,6 +14,14 @@ fun textFormat(view: TextView, title: String) {
         HtmlCompat.FROM_HTML_MODE_LEGACY)
 }
 
+@BindingAdapter("setPrice")
+fun priceFormat(view: TextView, price: Int?) {
+    if(price != null) {
+        val decimalFormat = DecimalFormat("#,###")
+        val format = decimalFormat.format(price)
+        view.text = format + "원"
+    }
+}
 
 @BindingAdapter("setTimeFormat")
 fun timeFormat(view: TextView, time: String) {
