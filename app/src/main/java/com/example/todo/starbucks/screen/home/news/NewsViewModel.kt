@@ -19,6 +19,7 @@ class NewsViewModel(
     }
 
     private fun getNews() = viewModelScope.launch {
+        _news.value = NewsState.Loading
         homeRepository.getNews().collect { result ->
             result.onSuccess {
                 _news.value = NewsState.GetNews(it)

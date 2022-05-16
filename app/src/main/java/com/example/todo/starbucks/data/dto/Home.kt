@@ -2,7 +2,6 @@ package com.example.todo.starbucks.data
 
 import com.squareup.moshi.Json
 
-// @Json(name="") / @field:Json(name="")
 data class Home(
     @Json(name = "display-name")
     val displayName: String,

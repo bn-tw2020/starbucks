@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="order"
+            type="com.example.todo.starbucks.domain.model.Order" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_order"
+            setImage="@{order.imageURL}"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/tv_title_kr"
+            style="@style/Headline5.Black.Size20.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{order.titleKR}"
+            app:layout_constraintBottom_toTopOf="@id/tv_title_eng"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_order"
+            app:layout_constraintTop_toTopOf="@id/iv_order"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="콜드 브루" />
+
+        <TextView
+            android:id="@+id/tv_title_eng"
+            style="@style/Body2.Grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{order.titleENG}"
+            app:layout_constraintBottom_toBottomOf="@id/iv_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_title_kr"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_kr"
+            tools:text="Cold Brew" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

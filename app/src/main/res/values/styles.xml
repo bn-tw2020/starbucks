@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="Headline4" parent="TextAppearance.MaterialComponents.Headline4" />
+
+    <style name="Headline4.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Headline4.Bold.Black">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="Headline5" parent="TextAppearance.MaterialComponents.Headline5" />
 
     <style name="Headline5.Black">
@@ -9,6 +19,10 @@
 
     <style name="Headline5.Black.Size20">
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Headline5.Black.Size20.Bold">
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1" />

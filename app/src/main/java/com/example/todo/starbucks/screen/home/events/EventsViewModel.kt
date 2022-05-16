@@ -22,6 +22,7 @@ class EventsViewModel(
     }
 
     private fun getEvents() = viewModelScope.launch {
+        _events.value = EventsState.Loading
         homeRepository.getEvents().collect { result ->
             result.onSuccess { events ->
                 val eventList = events.events.map { event ->

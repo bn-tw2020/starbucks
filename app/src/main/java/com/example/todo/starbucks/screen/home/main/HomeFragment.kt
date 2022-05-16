@@ -19,6 +19,8 @@ import com.example.todo.starbucks.screen.home.main.nowrecommend.PopularProductsS
 import com.example.todo.starbucks.screen.home.main.nowrecommend.PopularSectionAdapter
 import com.example.todo.starbucks.screen.home.main.yourrecommend.RecommendProductsState
 import com.example.todo.starbucks.screen.home.main.yourrecommend.TopRecommendSectionAdapter
+import kotlinx.coroutines.flow.buffer
+import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -56,37 +58,40 @@ class HomeFragment : Fragment() {
     }
 
     private fun observerData() {
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             viewModel.recommendProducts.collect { state ->
                 when (state) {
+                    is RecommendProductsState.Loading -> handlerLoading()
                     is RecommendProductsState.GetRecommendProducts -> recommendSuccess(state)
                     else -> Unit
                 }
             }
-
         }
 
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted  {
             viewModel.mainEvent.collect { state ->
                 when (state) {
+                    is MainEventState.Loading -> handlerLoading()
                     is MainEventState.GetMainEvent -> mainEventSuccess(state)
                     else -> Unit
                 }
             }
         }
 
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted  {
             viewModel.events.collect { state ->
                 when (state) {
+                    is EventsState.Loading -> handlerLoading()
                     is EventsState.GetEvents -> eventsSuccess(state)
                     else -> Unit
                 }
             }
         }
 
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted  {
             viewModel.popularProducts.collect { state ->
                 when (state) {
+                    is PopularProductsState.Loading -> handlerLoading()
                     is PopularProductsState.GetPopularProducts -> popularSuccess(state)
                     else -> Unit
                 }
@@ -94,23 +99,37 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun handlerLoading() = with(binding) {
+        rvHome.visibility = View.GONE
+        progressBar.visibility = View.VISIBLE
+    }
+
     private fun recommendSuccess(state: RecommendProductsState.GetRecommendProducts) {
+        visibility()
         topRecommendSectionAdapter.submitList(listOf(state.products))
         scrollUp()
     }
 
     private fun mainEventSuccess(state: MainEventState.GetMainEvent) {
+        visibility()
         mainEventItemAdapter.submitList(listOf(state.url))
         scrollUp()
     }
 
     private fun eventsSuccess(state: EventsState.GetEvents) {
+        visibility()
         eventsSectionAdapter.submitList(listOf(state.events))
         scrollUp()
     }
 
     private fun popularSuccess(state: PopularProductsState.GetPopularProducts) {
+        visibility()
         popularSectionAdapter.submitList(listOf(state.products))
+    }
+
+    private fun visibility() = with(binding) {
+        rvHome.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
     }
 
     private fun scrollUp() {

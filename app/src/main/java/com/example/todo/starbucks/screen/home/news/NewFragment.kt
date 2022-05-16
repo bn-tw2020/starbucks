@@ -38,9 +38,10 @@ class NewFragment : Fragment() {
     }
 
     private fun observerData() {
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted  {
             viewModel.news.collect { state ->
                 when (state) {
+                    is NewsState.Loading -> handlerLoading()
                     is NewsState.GetNews -> newsSuccess(state)
                     else -> Unit
                 }
@@ -48,7 +49,13 @@ class NewFragment : Fragment() {
         }
     }
 
+    private fun handlerLoading() = with(binding) {
+        rvNews.visibility = View.GONE
+        progressBar.visibility = View.VISIBLE
+    }
+
     private fun newsSuccess(state: NewsState.GetNews) {
+        visibility()
         newAdapter.submitList(state.news)
     }
 
@@ -63,4 +70,8 @@ class NewFragment : Fragment() {
         }
     }
 
+    private fun visibility() = with(binding) {
+        rvNews.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
+    }
 }

@@ -10,4 +10,5 @@
     <string name="label_see_all">See all</string>
     <string name="label_current_popular_menu">이 시간대 인기 메뉴</string>
     <string name="label_events">Events</string>
+    <string name="label_order">Order</string>
 </resources>

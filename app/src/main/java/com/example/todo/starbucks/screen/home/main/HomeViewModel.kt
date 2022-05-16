@@ -51,7 +51,9 @@ class HomeViewModel(
 
                 // TODO 개인 추천 업데이트
                 launch {
-                    if(isFirst) { cancel() }
+                    if (isFirst) {
+                        cancel()
+                    }
                     val products = mutableListOf<RecommendProduct?>()
                     home.yourProducts.products.forEach { productCd ->
                         val productFile = async { getProductFile(productCd) }
@@ -73,13 +75,20 @@ class HomeViewModel(
 
                 // TODO 메인 이벤트
                 launch {
-                    if(isFirst) { cancel() }
-                    _mainEvent.value = MainEventState.GetMainEvent(home.mainEvent.imageUploadPath + home.mainEvent.thumbnail)
+                    if (isFirst) {
+                        cancel()
+                    }
+                    _mainEvent.value = MainEventState.Loading
+                    _mainEvent.value =
+                        MainEventState.GetMainEvent(home.mainEvent.imageUploadPath + home.mainEvent.thumbnail)
                 }
 
                 // TODO 이벤트 업데이트
                 launch {
-                    if(isFirst) { cancel() }
+                    if (isFirst) {
+                        cancel()
+                    }
+                    _events.value = EventsState.Loading
                     homeRepository.getEvents().collect { result ->
                         result.onSuccess { events ->
                             val eventList = events.events.map { event ->
@@ -126,10 +135,14 @@ class HomeViewModel(
     }
 
     private suspend fun getProductFile(productCd: String): ProductFile? {
+        _popularProducts.value = PopularProductsState.Loading
+        _recommendProducts.value = RecommendProductsState.Loading
         return homeRepository.getProductsFile(productCd).getOrNull()
     }
 
     private suspend fun getProductInformation(productCd: String): ProductInformation? {
+        _popularProducts.value = PopularProductsState.Loading
+        _recommendProducts.value = RecommendProductsState.Loading
         return homeRepository.getProductInformation(productCd).getOrNull()
     }
 }

@@ -10,19 +10,19 @@ import com.example.todo.starbucks.domain.model.RecommendProducts
 import com.example.todo.starbucks.screen.home.main.yourrecommend.TopRecommendDiffCallback
 
 class PopularSectionAdapter :
-    ListAdapter<RecommendProducts, PopularSectionAdapter.PouplarSectionViewHolder>(
+    ListAdapter<RecommendProducts, PopularSectionAdapter.PopularSectiㅕㅔonViewHolder>(
         TopRecommendDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PouplarSectionViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularSectiㅕㅔonViewHolder {
         val binding = ItemPopularMenuSectionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PouplarSectionViewHolder(binding)
+        return PopularSectiㅕㅔonViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: PouplarSectionViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PopularSectiㅕㅔonViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    class PouplarSectionViewHolder(private val binding: ItemPopularMenuSectionBinding) : RecyclerView.ViewHolder(binding.root) {
+    class PopularSectiㅕㅔonViewHolder(private val binding: ItemPopularMenuSectionBinding) : RecyclerView.ViewHolder(binding.root) {
 
         private val nestedAdapter = PopularItemAdapter()
 

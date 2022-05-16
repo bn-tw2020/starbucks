@@ -44,9 +44,10 @@ class EventsFragment : Fragment() {
     }
 
     private fun observerData() {
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted  {
             viewModel.events.collect { state ->
                 when (state) {
+                    is EventsState.Loading -> handlerLoading()
                     is EventsState.GetEvents -> eventsSuccess(state)
                     else -> Unit
                 }
@@ -54,7 +55,13 @@ class EventsFragment : Fragment() {
         }
     }
 
+    private fun handlerLoading() = with(binding) {
+        rvEvents.visibility = View.GONE
+        progressBar.visibility = View.VISIBLE
+    }
+
     private fun eventsSuccess(state: EventsState.GetEvents) {
+        visibility()
         eventsAdapter.submitList(state.events.events)
     }
 
@@ -62,5 +69,10 @@ class EventsFragment : Fragment() {
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
+    }
+
+    private fun visibility() = with(binding) {
+        rvEvents.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
     }
 }
