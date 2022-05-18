@@ -8,6 +8,7 @@ import com.example.todo.starbucks.screen.order.beverage.BeverageFragment
 import com.example.todo.starbucks.screen.order.food.FoodFragment
 import com.example.todo.starbucks.screen.order.product.ProductFragment
 
+
 class ViewPagerAdapter(
     fragmentActivity: FragmentActivity,
     private val completed : (Order) -> Unit

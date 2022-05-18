@@ -11,4 +11,5 @@
     <string name="label_current_popular_menu">이 시간대 인기 메뉴</string>
     <string name="label_events">Events</string>
     <string name="label_order">Order</string>
+    <string name="description_favorite_button">description_favorite_button</string>
 </resources>

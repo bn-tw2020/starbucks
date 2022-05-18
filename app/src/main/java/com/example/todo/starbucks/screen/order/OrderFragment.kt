@@ -22,16 +22,16 @@ class OrderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        viewPagerAdapter = ViewPagerAdapter(context as FragmentActivity) { order: Order ->
+            findNavController().navigate(R.id.action_order_to_detail,
+                bundleOf("order" to order))
+        }
         binding = FragmentOrderBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewPagerAdapter = ViewPagerAdapter(context as FragmentActivity) { order: Order ->
-            findNavController().navigate(R.id.action_order_to_detail,
-                bundleOf("order" to order))
-        }
         binding.vpPager.adapter = viewPagerAdapter
         TabLayoutMediator(binding.tabKind, binding.vpPager) { tab, position ->
             tab.text = tabList[position]

@@ -9,11 +9,16 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
+    order: Order,
     private val homeRepository: HomeRepository,
 ) : ViewModel() {
 
     private val _orders = MutableStateFlow<DetailState>(DetailState.Normal)
     val orders: StateFlow<DetailState> = _orders
+
+    init {
+        getOrders(order)
+    }
 
     fun getOrders(order: Order) {
         viewModelScope.launch {

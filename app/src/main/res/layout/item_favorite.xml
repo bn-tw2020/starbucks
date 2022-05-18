@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="favorite"
+            type="com.example.todo.starbucks.domain.model.DetailOrder" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_order"
+            setImage="@{favorite.imageURL}"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="30dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/tv_title_kr"
+            style="@style/Headline5.Black.Size20.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{favorite.name}"
+            app:layout_constraintBottom_toTopOf="@id/tv_title_eng"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_order"
+            app:layout_constraintTop_toTopOf="@id/iv_order"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="콜드 브루" />
+
+        <TextView
+            android:id="@+id/tv_title_eng"
+            style="@style/Body2.Grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{favorite.nameENG}"
+            app:layout_constraintBottom_toBottomOf="@id/iv_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_title_kr"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_kr"
+            tools:text="Cold Brew" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            style="@style/Subtitle1.Bold"
+            setPrice="@{favorite.price}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/iv_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_title_kr"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_eng"
+            tools:text="5,600원" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_like"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/selector_favorite_button"
+            android:contentDescription="@string/description_favorite_button"
+            app:layout_constraintEnd_toStartOf="@id/btn_order"
+            app:layout_constraintTop_toBottomOf="@id/tv_price" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_order"
+            style="@style/Subtitle1.Bold.White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/background_rounded_green"
+            android:text="@string/label_order"
+            app:layout_constraintBottom_toBottomOf="@id/btn_like"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_like" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

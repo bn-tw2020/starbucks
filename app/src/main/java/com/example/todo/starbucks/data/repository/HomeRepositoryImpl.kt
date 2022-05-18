@@ -6,6 +6,7 @@ import com.example.todo.starbucks.data.ProductInformation
 import com.example.todo.starbucks.data.dto.Events
 import com.example.todo.starbucks.data.remote.HomeApi
 import com.example.todo.starbucks.data.remote.ProductApi
+import com.example.todo.starbucks.domain.model.DetailOrder
 import com.example.todo.starbucks.domain.model.NewNotice
 import com.example.todo.starbucks.domain.model.Order
 import com.example.todo.starbucks.domain.repository.HomeRepository
@@ -46,7 +47,7 @@ class HomeRepositoryImpl(
                     NewNotice(
                         new.title.toString(),
                         new.newsDt.toString(),
-                        "https://image.istarbucks.co.kr/upload/promotion/${new.appThnlImgName}")
+                        "https://image.istarbucks.co.kr/upload/news/${new.appThnlImgName}")
                 }
                 map
             }
@@ -67,5 +68,4 @@ class HomeRepositoryImpl(
             }
         })
     }
-
 }

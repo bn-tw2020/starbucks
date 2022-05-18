@@ -1,5 +1,6 @@
 package com.example.todo.starbucks.screen.common
 
+import android.view.View
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
@@ -16,7 +17,7 @@ fun textFormat(view: TextView, title: String) {
 
 @BindingAdapter("setPrice")
 fun priceFormat(view: TextView, price: Int?) {
-    if(price != null) {
+    if (price != null) {
         val decimalFormat = DecimalFormat("#,###")
         val format = decimalFormat.format(price)
         view.text = format + "원"

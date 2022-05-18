@@ -8,7 +8,9 @@ import com.example.todo.starbucks.databinding.ItemOrderBinding
 import com.example.todo.starbucks.domain.model.Order
 import com.example.todo.starbucks.screen.order.OrderDiffUtil
 
-class DetailAdapter: ListAdapter<Order, DetailAdapter.DetailViewHolder>(OrderDiffUtil()) {
+class DetailAdapter(
+    private val completed: (order: Order) -> Unit,
+) : ListAdapter<Order, DetailAdapter.DetailViewHolder>(OrderDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val binding = ItemOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,10 +21,12 @@ class DetailAdapter: ListAdapter<Order, DetailAdapter.DetailViewHolder>(OrderDif
         holder.bind(getItem(position))
     }
 
-    class DetailViewHolder(private val binding: ItemOrderBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class DetailViewHolder(private val binding: ItemOrderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(order: Order) {
             binding.order = order
+            itemView.setOnClickListener { completed(order) }
         }
     }
 }

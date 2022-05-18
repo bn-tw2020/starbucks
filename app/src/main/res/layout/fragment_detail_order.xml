@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="order"
+            type="com.example.todo.starbucks.domain.model.DetailOrder" />
+
+        <variable
+            name="vm"
+            type="com.example.todo.starbucks.screen.order.detailorder.DetailOrderViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screen.order.detailorder.DetailOrderFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/cl_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_main"
+                    setImage="@{order.imageURL}"
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/Headline4.Bold.Black"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="60dp"
+                    android:text="@{order.name}"
+                    app:layout_constraintEnd_toStartOf="@id/btn_like"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_main"
+                    tools:text="나이트로 바닐라 크림" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_like"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/selector_favorite_button"
+                    android:contentDescription="@string/description_favorite_button"
+                    android:onClick="@{() -> vm.toggleFavoriteButton(order)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_name"
+                    app:layout_constraintTop_toTopOf="@id/tv_name" />
+
+                <TextView
+                    android:id="@+id/tv_name_evg"
+                    style="@style/Body2.Grey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{order.nameENG}"
+                    app:layout_constraintStart_toStartOf="@id/tv_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name"
+                    tools:text="Nitro Vanilla Cream" />
+
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@{order.description}"
+                    app:layout_constraintEnd_toEndOf="@id/btn_like"
+                    app:layout_constraintStart_toStartOf="@id/tv_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name_evg"
+                    tools:text="부드러운 목넘김의 나이트로 커피와 바닐라 크림의 매력을 한번에 느껴보세요!" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    style="@style/Headline5.Black.Size20.Bold"
+                    setPrice="@{order.price}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_description"
+                    tools:text="5,900원" />
+
+                <TextView
+                    android:id="@+id/tv_kcal_text"
+                    style="@style/Subtitle2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="칼로리"
+                    app:layout_constraintStart_toStartOf="@id/tv_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_price" />
+
+                <TextView
+                    android:id="@+id/tv_kcal"
+                    style="@style/Subtitle2.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{order.kcal}"
+                    app:layout_constraintEnd_toEndOf="@id/btn_like"
+                    app:layout_constraintTop_toTopOf="@id/tv_kcal_text"
+                    tools:text="75kcal" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey"
+                    app:layout_constraintEnd_toEndOf="@id/tv_kcal"
+                    app:layout_constraintStart_toStartOf="@id/tv_kcal_text"
+                    app:layout_constraintTop_toBottomOf="@id/tv_kcal" />
+
+                <TextView
+                    android:id="@+id/tv_sugar_text"
+                    style="@style/Subtitle2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="당류"
+                    app:layout_constraintStart_toStartOf="@id/tv_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_kcal" />
+
+                <TextView
+                    android:id="@+id/tv_sugar"
+                    style="@style/Subtitle2.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{order.sugars}"
+                    app:layout_constraintEnd_toEndOf="@id/btn_like"
+                    app:layout_constraintTop_toTopOf="@id/tv_sugar_text"
+                    tools:text="10g" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey"
+                    app:layout_constraintEnd_toEndOf="@id/tv_kcal"
+                    app:layout_constraintStart_toStartOf="@id/tv_kcal_text"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sugar" />
+
+                <TextView
+                    android:id="@+id/tv_sodium_text"
+                    style="@style/Subtitle2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="나트륨"
+                    app:layout_constraintStart_toStartOf="@id/tv_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sugar" />
+
+                <TextView
+                    android:id="@+id/tv_sodium"
+                    style="@style/Subtitle2.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{order.sodium}"
+                    app:layout_constraintEnd_toEndOf="@id/btn_like"
+                    app:layout_constraintTop_toTopOf="@id/tv_sodium_text"
+                    tools:text="20mg" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey"
+                    app:layout_constraintEnd_toEndOf="@id/tv_kcal"
+                    app:layout_constraintStart_toStartOf="@id/tv_kcal_text"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sodium" />
+
+                <TextView
+                    android:id="@+id/tv_protein_text"
+                    style="@style/Subtitle2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="단백질"
+                    app:layout_constraintStart_toStartOf="@id/tv_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sodium" />
+
+                <TextView
+                    android:id="@+id/tv_protein"
+                    style="@style/Subtitle2.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{order.protein}"
+                    app:layout_constraintEnd_toEndOf="@id/btn_like"
+                    app:layout_constraintTop_toTopOf="@id/tv_protein_text"
+                    tools:text="1g" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey"
+                    app:layout_constraintEnd_toEndOf="@id/tv_kcal"
+                    app:layout_constraintStart_toStartOf="@id/tv_kcal_text"
+                    app:layout_constraintTop_toBottomOf="@id/tv_protein" />
+
+                <TextView
+                    android:id="@+id/tv_caffeine_text"
+                    style="@style/Subtitle2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="카페인"
+                    app:layout_constraintStart_toStartOf="@id/tv_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_protein" />
+
+                <TextView
+                    android:id="@+id/tv_caffeine"
+                    style="@style/Subtitle2.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{order.caffeine}"
+                    app:layout_constraintEnd_toEndOf="@id/btn_like"
+                    app:layout_constraintTop_toTopOf="@id/tv_caffeine_text"
+                    tools:text="20mg" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey"
+                    app:layout_constraintEnd_toEndOf="@id/tv_kcal"
+                    app:layout_constraintStart_toStartOf="@id/tv_kcal_text"
+                    app:layout_constraintTop_toBottomOf="@id/tv_caffeine" />
+
+                <TextView
+                    android:id="@+id/tv_sat_fat_text"
+                    style="@style/Subtitle2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="포화지방"
+                    app:layout_constraintStart_toStartOf="@id/tv_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_caffeine" />
+
+                <TextView
+                    android:id="@+id/tv_sat_fat"
+                    style="@style/Subtitle2.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{order.satFAT}"
+                    app:layout_constraintEnd_toEndOf="@id/btn_like"
+                    app:layout_constraintTop_toTopOf="@id/tv_sat_fat_text"
+                    tools:text="2g" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey"
+                    app:layout_constraintEnd_toEndOf="@id/tv_kcal"
+                    app:layout_constraintStart_toStartOf="@id/tv_kcal_text"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sat_fat_text" />
+
+                <TextView
+                    android:id="@+id/tv_allergy_text"
+                    style="@style/Headline5.Black.Size20.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="알레르기 유발 요인"
+                    app:layout_constraintStart_toStartOf="@id/tv_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sat_fat" />
+
+                <TextView
+                    android:id="@+id/tv_allergy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{order.allergy}"
+                    app:layout_constraintStart_toStartOf="@id/tv_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_allergy_text"
+                    tools:text="우유" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible" />
+
+                <Button
+                    android:id="@+id/btn_retry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="재시도"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_order"
+                style="@style/Subtitle1.Bold.White"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_rounded_green"
+                android:text="@string/label_order"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,6 +1,7 @@
 package com.example.todo.starbucks.screen.home.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,9 @@ import com.example.todo.starbucks.screen.home.main.nowrecommend.PopularProductsS
 import com.example.todo.starbucks.screen.home.main.nowrecommend.PopularSectionAdapter
 import com.example.todo.starbucks.screen.home.main.yourrecommend.RecommendProductsState
 import com.example.todo.starbucks.screen.home.main.yourrecommend.TopRecommendSectionAdapter
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -50,8 +54,18 @@ class HomeFragment : Fragment() {
             eventsSectionAdapter,
             popularSectionAdapter
         )
-        binding.btnNew.setOnClickListener { findNavController().navigate(R.id.action_home_to_new) }
+
+        binding.btnNew.clicks().sample(5000L).launchIn(lifecycleScope)
     }
+
+    private fun View.clicks(): Flow<Unit> = callbackFlow {
+        setOnClickListener {
+            trySend(Unit)
+            findNavController().navigate(R.id.action_home_to_new)
+        }
+        awaitClose { setOnClickListener(null) }
+    }
+
 
     private fun observerData() {
         lifecycleScope.launchWhenStarted {
@@ -64,7 +78,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        lifecycleScope.launchWhenStarted  {
+        lifecycleScope.launchWhenStarted {
             viewModel.mainEvent.collect { state ->
                 when (state) {
                     is MainEventState.Loading -> handlerLoading()
@@ -74,7 +88,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        lifecycleScope.launchWhenStarted  {
+        lifecycleScope.launchWhenStarted {
             viewModel.events.collect { state ->
                 when (state) {
                     is EventsState.Loading -> handlerLoading()
@@ -84,7 +98,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        lifecycleScope.launchWhenStarted  {
+        lifecycleScope.launchWhenStarted {
             viewModel.popularProducts.collect { state ->
                 when (state) {
                     is PopularProductsState.Loading -> handlerLoading()

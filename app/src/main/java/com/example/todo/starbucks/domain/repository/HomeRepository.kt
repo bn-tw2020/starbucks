@@ -5,6 +5,7 @@ import com.example.todo.starbucks.data.ProductFile
 import com.example.todo.starbucks.data.ProductInformation
 import com.example.todo.starbucks.data.dto.DetailDto
 import com.example.todo.starbucks.data.dto.Events
+import com.example.todo.starbucks.domain.model.DetailOrder
 import com.example.todo.starbucks.domain.model.NewNotice
 import com.example.todo.starbucks.domain.model.Order
 import kotlinx.coroutines.flow.Flow
